@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Document</title>
+</head>
+<body>
+
+   <div class="container">
+        <div class="nested-expanding-list">
+            <div class="expanding-list">
+                <div class="expanding-list__expander checkbox expanded">
+                    <div class="expanding-list__expander-icon">
+
+                    </div>
+                    <div class="expanding-list__expander-title text-block">
+                        List expander 1
+                    </div>
+                </div>
+                <ul class="expanding-list__to-expand">
+                    <li>
+                        <div class="expanding-list__expander radio expanded">
+                            <div class="expanding-list__expander-icon">
+
+                            </div>
+                            <div class="expanding-list__expander-title text-block">
+                                List expander 1
+                            </div>
+                        </div>
+                        <ul class="expanding-list__to-expand">
+                            <li class="expanding-list__no-more-expand text-block">
+                                Item 1  
+                            </li>
+                            <li class="expanding-list__no-more-expand text-block">
+                                Item 2 
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="expanding-list__expander radio no-expanded">
+                            <div class="expanding-list__expander-icon">
+
+                            </div>
+                            <div class="expanding-list__expander-title text-block">
+                                List expander 1
+                            </div>
+                        </div>
+                        <ul class="expanding-list__to-expand">
+                            <li class="expanding-list__no-more-expand text-block">
+                                Item 1  
+                            </li>
+                            <li class="expanding-list__no-more-expand text-block">
+                                Item 2 
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="expanding-list__no-more-expand text-block">
+                        Item SOLO 
+                    </li>
+                </ul>
+            </div>
+        </div>
+   </div>
+
+   <script src="scripts.js" type="module"></script>
+    
+</body>
+</html>

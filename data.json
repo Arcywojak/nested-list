@@ -1,0 +1,56 @@
+{
+    "id": "1",
+    "title": "FIRST_EXPAND",
+    "type": 2,
+    "nestedElements": [
+        {
+            "id": "2",
+            "title": "first expand",
+            "type": 2,
+            "nestedElements": [
+                {
+                    "id": "3",
+                    "title": "first child of fe",
+                    "type": 0,
+                    "nestedElements": []
+                },
+                {
+                    "id": "4",
+                    "title": "second child of fe",
+                    "type": 0,
+                    "nestedElements": []
+                },
+                {
+                    "id": "5",
+                    "title": "third child of fe",
+                    "type": 0,
+                    "nestedElements": []
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "title": "second expand",
+            "type": 2,
+            "nestedElements": [
+                {
+                    "id": "7",
+                    "title": "first child of se",
+                    "type": 0,
+                    "nestedElements": []
+                },
+                {
+                    "id": "8",
+                    "title": "second child of fe",
+                    "type": 0,
+                    "nestedElements": []
+                }
+            ]
+        },
+        {
+            "id": "9",
+            "title": "third no-expand",
+            "type": 0
+        }
+    ]
+}

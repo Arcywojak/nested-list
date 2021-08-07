@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@import "variables/variables.scss";
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.expanding-list {   
+    ul {
+        position: relative;
+        list-style-type: none;
+        padding-left: $ulLeftPadding;
+        margin: $ulMarginBottom 0 0 0;
+
+        li {
+            position: relative;
+        }
+
+        &::before {
+            content: "";
+            width: 1px;
+            height: $verticalLineLength;
+            background-color: black;
+            position: absolute;
+            left: $verticalLineLeft;
+            top: $verticalLineTop;
+        }
+
+        li::before {
+            content: "";
+            width: $horizontalLineLength;
+            height: $lineWidth;
+            background-color: black;
+            position: absolute;
+            left: $horizontalLineLeft;
+            top: $horizontalLineTop;
+        }
+    }
+
+    &__expander {
+        display: flex;
+        gap: $expanderGapBetweenIconAndTitle;
+
+        &-icon {
+            position: relative;
+            top: $iconTop;
+            background-size: 100% 100%;
+            background-position: center;
+            width: $iconSize;
+            height: $iconSize;
+            cursor: pointer;
+        }
+
+        &.radio.expanded > &-icon {
+            background-image: url("../images/radio-exp.svg");
+        }
+        &.radio.no-expanded > &-icon {
+            background-image: url("../images/radio-no-exp.svg");
+        }
+        &.checkbox.expanded > &-icon {
+            background-image: url("../images/checkbox-exp.svg")
+        }
+        &.checkbox.no-expanded > &-icon {
+            background-image: url("../images/checkbox-no-exp.svg")
+        }
+    }
+
+    .text-block {
+        padding: 0 $textBlockPaddingLeftRightBottom $textBlockPaddingLeftRightBottom $textBlockPaddingLeftRightBottom;
+        font-size: $textFontSize;
+    }
+
+
+    &__no-more-expand {
+        &:nth-child(odd) {
+            background-color: lighten(lightgray, 10%);
+        }
+    }
+}

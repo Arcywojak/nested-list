@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.expanding-list ul {
+  position: relative;
+  list-style-type: none;
+  padding-left: 25px;
+  margin: 5px 0 0 0;
+}
+
+.expanding-list ul li {
+  position: relative;
+}
+
+.expanding-list ul::before {
+  content: "";
+  width: 1px;
+  height: calc(100% - 11.3px);
+  background-color: black;
+  position: absolute;
+  left: 9.5px;
+  top: -2.5px;
+}
+
+.expanding-list ul li::before {
+  content: "";
+  width: 12.5px;
+  height: 1px;
+  background-color: black;
+  position: absolute;
+  left: -15.5px;
+  top: 10.3px;
+}
+
+.expanding-list__expander {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+}
+
+.expanding-list__expander-icon {
+  position: relative;
+  top: 0.8px;
+  background-size: 100% 100%;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.expanding-list__expander.radio.expanded > .expanding-list__expander-icon {
+  background-image: url("../images/radio-exp.svg");
+}
+
+.expanding-list__expander.radio.no-expanded > .expanding-list__expander-icon {
+  background-image: url("../images/radio-no-exp.svg");
+}
+
+.expanding-list__expander.checkbox.expanded > .expanding-list__expander-icon {
+  background-image: url("../images/checkbox-exp.svg");
+}
+
+.expanding-list__expander.checkbox.no-expanded > .expanding-list__expander-icon {
+  background-image: url("../images/checkbox-no-exp.svg");
+}
+
+.expanding-list .text-block {
+  padding: 0 3px 3px 3px;
+  font-size: 18px;
+}
+
+.expanding-list__no-more-expand:nth-child(odd) {
+  background-color: #ededed;
+}
+/*# sourceMappingURL=styles.css.map */

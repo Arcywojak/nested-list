@@ -1,0 +1,24 @@
+//Text
+$textFontSize: 18px;
+$textLineHeight: $textFontSize*1.2;
+
+//icon
+$iconSize: 20px;
+$iconTop: $textLineHeight/2 - $iconSize/2;
+
+//margins and paddings
+$expanderGapBetweenIconAndTitle: 5px;
+$textBlockPaddingLeftRightBottom: 3px;
+$ulLeftPadding: $iconSize + $expanderGapBetweenIconAndTitle;
+$ulMarginBottom: 5px;
+
+//line
+$lineWidth: 1px;
+
+$verticalLineLeft: $iconSize/2 - $lineWidth/2;
+$verticalLineTop: - $ulMarginBottom/2;
+$verticalLineLength: calc(100% - #{$textLineHeight/2 + $lineWidth/2}) ;
+
+$horizontalLineTop: $textLineHeight/2 - $lineWidth/2;
+$horizontalLineLeft: -$ulLeftPadding + $verticalLineLeft;
+$horizontalLineLength: $ulLeftPadding - $verticalLineLeft - 3px;

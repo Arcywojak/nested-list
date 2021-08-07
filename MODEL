@@ -1,0 +1,15 @@
+MODEL PLIKU JSON, poniżej będę stosował Typescript'ową konwecję tworzenia typów:
+
+type ExpandingListElement {
+    id: string,
+    title: string,
+    type: number,
+    nestedElements: ExpandingListElement[] <- (Nie jestem pewien czy w TS typ może zawierać właściwość o swoim typie)
+},
+
+gdzie 'type' przyjmuje wartości 0, 1, 2 oraz:
+0 - oznacza, że jest to element nierozwijalny (tzn. sam tytuł elementu listy);
+1 - oznacza grupę typu radio,
+2 - oznacza grupę typu checkbox
+
+W przypadku, gdy type = 0, przyjmijmy, że nestedElements jest pustą tablicą
