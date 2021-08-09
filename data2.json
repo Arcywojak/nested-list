@@ -1,0 +1,160 @@
+{
+    "id": "1",
+    "titleArray": ["Nagłówek drzewa", "wielowierszowy"],
+    "type": 2,
+    "nestingLevel": 0,
+    "nestedElements": [
+        {
+            "id": "2",
+            "titleArray": ["Pododział 1"],
+            "type": 1,
+            "nestingLevel": 1,
+            "nestedElements": [
+                {
+                    "id": "3",
+                    "titleArray": ["Zespół 1", "HR"],
+                    "type": 0,
+                    "nestingLevel": 2,
+                    "nestedElements": []
+                },
+                {
+                    "id": "4",
+                    "titleArray": ["Zespół 1", "Marketing"],
+                    "type": 0,
+                    "nestingLevel": 2,
+                    "nestedElements": []
+                },
+                {
+                    "id": "100",
+                    "titleArray": ["Zespół 3", "Analitycy"],
+                    "type": 2,
+                    "nestingLevel": 2, 
+                    "nestedElements": [
+                        {
+                            "id": "101",
+                            "titleArray": ["Podzespół 3.1", "Kalendarz"],
+                            "type": 0,
+                            "nestingLevel": 2,
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "102",
+                            "titleArray": ["Podzespół 3.2", "Kokpit"],
+                            "type": 0,
+                            "nestingLevel": 2,
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "103",
+                            "titleArray": ["Podzespół 3.3", "Różności"],
+                            "type": 0,
+                            "nestingLevel": 2,
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "104",
+                            "titleArray": ["Podzespół 3.4", "Widok"],
+                            "type": 0,
+                            "nestingLevel": 2,
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "105",
+                            "titleArray": ["Podzespół 3.5", "Szukaj"],
+                            "type": 0,
+                            "nestingLevel": 2,
+                            "nestedElements": []
+                        }
+                    ]
+                },
+                {
+                    "id": "201",
+                    "titleArray": ["Zespół 4", "Programiści"],
+                    "type": 2,
+                    "nestingLevel": 1,
+                    "nestedElements": [
+                        {
+                            "id": "202",
+                            "titleArray": ["Podzespół 4.1", "Front-end"],
+                            "type": 0,
+                            "nestingLevel": 1, 
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "203",
+                            "titleArray": ["Podzespół 4.2", "Middle-Front-end"],
+                            "type": 0,
+                            "nestingLevel": 1, 
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "204",
+                            "titleArray": ["Podzespół 4.3", "Middle-back-end"],
+                            "type": 0,
+                            "nestingLevel": 1, 
+                            "nestedElements": []
+                        },
+                        {
+                            "id": "205",
+                            "titleArray": ["Podzespół 4.4", "back-end"],
+                            "type": 0,
+                            "nestingLevel": 1, 
+                            "nestedElements": []
+                        }
+                    ]  
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "titleArray": ["pododdział 2"],
+            "type": 1,
+            "nestingLevel": 1,
+            "nestedElements": [
+                {
+                    "id": "7",
+                    "titleArray": ["coś tam 1"],
+                    "type": 0,
+                    "nestingLevel": 2,
+                    "nestedElements": []
+                },
+                {
+                    "id": "8",
+                    "titleArray": ["coś tam 2"],
+                    "type": 0,
+                    "nestingLevel": 2,
+                    "nestedElements": []
+                }
+            ]
+        },
+        {
+            "id": "400",
+            "titleArray": ["pododdział 3"],
+            "type": 1,
+            "nestingLevel": 1,
+            "nestedElements": [
+                {
+                    "id": "401",
+                    "titleArray": ["coś tam 3"],
+                    "type": 0,
+                    "nestingLevel": 2,
+                    "nestedElements": []
+                },
+                {
+                    "id": "402",
+                    "titleArray": ["coś tam 4"],
+                    "type": 0,
+                    "nestingLevel": 2,
+                    "nestedElements": []
+                }
+            ]
+        },
+        {
+            "id": "9",
+            "titleArray": ["NIEZRZESZENI"],
+            "nestingLevel": 1,
+            "type": 0,
+            "nestedElements": []
+        }
+    ]
+}

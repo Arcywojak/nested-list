@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 @import "variables/variables.scss";
 
@@ -93,10 +93,16 @@ body {
     .text-block {
         padding: 0 $textBlockPaddingLeftRightBottom $textBlockPaddingLeftRightBottom $textBlockPaddingLeftRightBottom;
         font-size: $textFontSize;
+
+        span {
+            display: block;
+        }
     }
 
 
     &__no-more-expand {
+        font-weight: 300;
+
         &:nth-child(odd) {
             background-color: lighten(lightgray, 10%);
         }

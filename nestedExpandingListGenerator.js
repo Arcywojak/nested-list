@@ -1,7 +1,7 @@
 /*
 type ExpandingListElement {
     id: string, <- (unikalne)
-    title: string,
+    titleArray: string[],
     type: number,
     nestingLevel: number
     nestedElements: ExpandingListElement[] <- (Nie jestem pewien czy w TS typ może zawierać właściwość o swoim typie)
@@ -51,8 +51,10 @@ export class NestedExpandingListGenerator {
 
     generateListElements(parentBlock, expandingListElement) {
 
-        const isArray = Array.isArray(expandingListElement.nestedElements);
-        if(!isArray) throw new Error("nestedElementProperty is not an array! Repair your JSON file.");
+        const isArrayNE = Array.isArray(expandingListElement.nestedElements);
+        if(!isArrayNE) throw new Error("nestedElemenst prop is not an array! Repair your JSON file.");
+        const isArrayTA = Array.isArray(expandingListElement.titleArray)
+        if(!isArrayTA) throw new Error("titleArray prop is not an array! Repair your JSON file."); 
 
         switch(expandingListElement.type) {
             case this.listElementType.PLAIN_TEXT:
@@ -70,7 +72,15 @@ export class NestedExpandingListGenerator {
 
     generatePlainText(parentBlock, expandingListElement) {
         parentBlock.classList.add("expanding-list__no-more-expand", "text-block");
-        parentBlock.innerHTML = expandingListElement.title;
+        this.attachTitles(parentBlock, expandingListElement);
+    }
+
+    attachTitles(parentBlock, expandingListElement) {
+        expandingListElement.titleArray.map(title => {
+            const span = document.createElement("span");
+            span.innerText = title;
+            parentBlock.appendChild(span);
+        });
     }
 
     generateExpanderWithList(parentBlock, expandingListElement, expanderTypeName) {
@@ -95,7 +105,7 @@ export class NestedExpandingListGenerator {
 
         const expanderChildText = document.createElement("div");
         expanderChildText.classList.add("expanding-list__expander-title", "text-block");
-        expanderChildText.innerHTML = expandingListElement.title;
+        this.attachTitles(expanderChildText, expandingListElement);
 
         expander.appendChild(expanderChildIcon);
         expander.appendChild(expanderChildText);
@@ -144,7 +154,7 @@ export class NestedExpandingListGenerator {
     }
 
     calculateMaxHeight(expandingListElement, sum = 0) {
-        sum += this.getHeightOfTextBlock();
+        sum += this.getHeightOfTextBlock() * expandingListElement.titleArray.length;
 
         //we do no need to validate array because we did it earlier in this.getListOfExpander(...)
         if(expandingListElement.nestedElements.length > 0) {

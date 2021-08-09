@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 *, *::before, *::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -95,6 +95,14 @@ body {
 .expanding-list .text-block {
   padding: 0 3px 3px 3px;
   font-size: 18px;
+}
+
+.expanding-list .text-block span {
+  display: block;
+}
+
+.expanding-list__no-more-expand {
+  font-weight: 300;
 }
 
 .expanding-list__no-more-expand:nth-child(odd) {

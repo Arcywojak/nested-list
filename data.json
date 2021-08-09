@@ -1,53 +1,53 @@
 {
     "id": "1",
-    "title": "FIRST_EXPAND",
+    "titleArray": ["FIRST_EXPAND", "unde first ex"],
     "type": 2,
     "nestingLevel": 0,
     "nestedElements": [
         {
             "id": "2",
-            "title": "first expand",
+            "titleArray": ["first expand"],
             "type": 1,
             "nestingLevel": 1,
             "nestedElements": [
                 {
                     "id": "3",
-                    "title": "first child of fe",
+                    "titleArray": ["first child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
                 },
                 {
                     "id": "4",
-                    "title": "second child of fe",
+                    "titleArray": ["second child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
                 },
                 {
                     "id": "20",
-                    "title": "third child of fe",
+                    "titleArray": ["third child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
                 },
                 {
                     "id": "21",
-                    "title": "third child of fe",
+                    "titleArray": ["third child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
                 },
                 {
                     "id": "22",
-                    "title": "third child of fe",
+                    "titleArray": ["third child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
                 },
                 {
                     "id": "23",
-                    "title": "third child of fe",
+                    "titleArray": ["third child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
@@ -56,20 +56,20 @@
         },
         {
             "id": "6",
-            "title": "second expand",
+            "titleArray": ["second expand"],
             "type": 1,
             "nestingLevel": 1,
             "nestedElements": [
                 {
                     "id": "7",
-                    "title": "first child of se",
+                    "titleArray": ["first child of se"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
                 },
                 {
                     "id": "8",
-                    "title": "second child of fe",
+                    "titleArray": ["second child of fe"],
                     "type": 0,
                     "nestingLevel": 2,
                     "nestedElements": []
@@ -78,14 +78,14 @@
         },
         {
             "id": "9",
-            "title": "third no-expand",
+            "titleArray": ["third no-expand"],
             "nestingLevel": 1,
             "type": 0,
             "nestedElements": []
         },
         {
             "id": "10",
-            "title": "fourth no-expand",
+            "titleArray": ["fourth no-expand"],
             "nestingLevel": 1,
             "type": 0,
             "nestedElements": []
