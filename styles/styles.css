@@ -19,6 +19,10 @@ body {
   display: grid;
 }
 
+.expanding-list {
+  background-color: white;
+}
+
 .expanding-list-holder {
   width: 100%;
 }
@@ -39,30 +43,11 @@ body {
   position: relative;
 }
 
-.expanding-list ul::before {
-  content: "";
-  width: 1px;
-  height: calc(100% - 11.3px);
-  background-color: black;
-  position: absolute;
-  left: 9.5px;
-  top: -2.5px;
-}
-
-.expanding-list ul li::before {
-  content: "";
-  width: 12.5px;
-  height: 1px;
-  background-color: black;
-  position: absolute;
-  left: -15.5px;
-  top: 10.3px;
-}
-
 .expanding-list__expander {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
   gap: 5px;
 }
 
@@ -74,6 +59,10 @@ body {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.expanding-list__expander-title {
+  position: relative;
 }
 
 .expanding-list__expander.radio > .expanding-list__expander-icon {
@@ -107,5 +96,46 @@ body {
 
 .expanding-list__no-more-expand:nth-child(odd) {
   background-color: #ededed;
+}
+
+/* LINES */
+.expanding-list ul::before {
+  content: "";
+  width: 1px;
+  height: calc(100% - 11.3px);
+  background-color: black;
+  position: absolute;
+  left: 9.5px;
+  top: -2.5px;
+}
+
+.expanding-list ul li::before {
+  content: "";
+  width: 12.5px;
+  height: 1px;
+  background-color: black;
+  position: absolute;
+  left: -15.5px;
+  top: 10.3px;
+}
+
+.expanding-list ul li:last-child::after {
+  content: "";
+  width: 1px;
+  height: calc(100% - 21.6px);
+  background-color: white;
+  position: absolute;
+  left: -15.5px;
+  top: 11.3px;
+}
+
+.expanded .expanding-list__expander-title::before {
+  content: "";
+  width: 1px;
+  height: calc( 100% - 20px);
+  background-color: black;
+  position: absolute;
+  left: -15.5px;
+  top: calc(20px + 5px);
 }
 /*# sourceMappingURL=styles.css.map */

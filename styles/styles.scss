@@ -24,6 +24,7 @@ body {
     &-holder {
         width: 100%;
     }
+    background-color: $backgroundColor;
 
     ul {
         position: relative;
@@ -31,39 +32,18 @@ body {
         padding-left: $ulLeftPadding;
         margin: $ulMarginBottom 0 0 0;
         width: 100%;
-
         transition: max-height .8s ease-in-out;
-        
         max-height: 0;
         overflow: hidden;
 
         li {
             position: relative;
         }
-
-        &::before {
-            content: "";
-            width: 1px;
-            height: $verticalLineLength;
-            background-color: black;
-            position: absolute;
-            left: $verticalLineLeft;
-            top: $verticalLineTop;
-        }
-
-        li::before {
-            content: "";
-            width: $horizontalLineLength;
-            height: $lineWidth;
-            background-color: black;
-            position: absolute;
-            left: $horizontalLineLeft;
-            top: $horizontalLineTop;
-        }
     }
 
     &__expander {
         display: flex;
+        position: relative;
         gap: $expanderGapBetweenIconAndTitle;
 
         &-icon {
@@ -74,6 +54,10 @@ body {
             width: $iconSize;
             height: $iconSize;
             cursor: pointer;
+        }
+
+        &-title {
+            position: relative;
         }
 
         &.radio > &-icon {
@@ -105,6 +89,55 @@ body {
 
         &:nth-child(odd) {
             background-color: lighten(lightgray, 10%);
+        }
+
+    }
+}
+
+/* LINES */
+
+.expanding-list {
+    ul {
+        &::before {
+            content: "";
+            width: $lineWidth;
+            height: $verticalLineLength;
+            background-color: black;
+            position: absolute;
+            left: $verticalLineLeft;
+            top: $verticalLineTop;
+        }
+    
+        li::before {
+            content: "";
+            width: $horizontalLineLength;
+            height: $lineWidth;
+            background-color: black;
+            position: absolute;
+            left: $horizontalLineLeft;
+            top: $horizontalLineTop;
+        }
+    
+        li:last-child::after {
+            content: "";
+            width: $lineWidth;
+            height: calc(100% - #{$textLineHeight});
+            background-color: $backgroundColor;
+            position: absolute;
+            left: $horizontalLineLeft;
+            top: $horizontalLineTop + $lineWidth;
+        }
+    }
+
+    &__expander {
+        .expanded &-title::before {
+            content: "";
+            width: $lineWidth;
+            height: $titleHelperLineHeight;
+            background-color: black;
+            position: absolute;
+            left: $horizontalLineLeft;
+            top: $titleHelperLineTop;
         }
     }
 }
