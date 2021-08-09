@@ -1,8 +1,8 @@
 import { NestedExpandingListGenerator } from "./nestedExpandingListGenerator.js";
 
-const expandingListBlock = document.querySelector(".expanding-list");
+const expandingListBlock = document.querySelector(".expanding-list-holder");
 const jsonUrl = './data.json';
 
-const expandingList = new NestedExpandingListGenerator(expandingListBlock, jsonUrl);
+const expandingListGenerator = new NestedExpandingListGenerator(expandingListBlock, jsonUrl);
 
-expandingList.init();
+expandingListGenerator.init();

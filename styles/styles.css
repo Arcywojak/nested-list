@@ -22,6 +22,10 @@ body {
   list-style-type: none;
   padding-left: 25px;
   margin: 5px 0 0 0;
+  -webkit-transition: fontSize .3s ease-in-out, padding .3s ease-in-out, margin .3s ease-in-out;
+  transition: fontSize .3s ease-in-out, padding .3s ease-in-out, margin .3s ease-in-out;
+  height: 0;
+  overflow: hidden;
 }
 
 .expanding-list ul li {
@@ -65,20 +69,24 @@ body {
   cursor: pointer;
 }
 
+.expanding-list__expander.expanded + ul {
+  height: auto;
+}
+
+.expanding-list__expander.radio > .expanding-list__expander-icon {
+  background-image: url("../images/radio-no-exp.svg");
+}
+
 .expanding-list__expander.radio.expanded > .expanding-list__expander-icon {
   background-image: url("../images/radio-exp.svg");
 }
 
-.expanding-list__expander.radio.no-expanded > .expanding-list__expander-icon {
-  background-image: url("../images/radio-no-exp.svg");
+.expanding-list__expander.checkbox > .expanding-list__expander-icon {
+  background-image: url("../images/checkbox-no-exp.svg");
 }
 
 .expanding-list__expander.checkbox.expanded > .expanding-list__expander-icon {
   background-image: url("../images/checkbox-exp.svg");
-}
-
-.expanding-list__expander.checkbox.no-expanded > .expanding-list__expander-icon {
-  background-image: url("../images/checkbox-no-exp.svg");
 }
 
 .expanding-list .text-block {

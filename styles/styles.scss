@@ -18,12 +18,19 @@ body {
     place-items: center;
 }
 
-.expanding-list {   
+.expanding-list { 
     ul {
         position: relative;
         list-style-type: none;
         padding-left: $ulLeftPadding;
         margin: $ulMarginBottom 0 0 0;
+
+        transition: fontSize .3s ease-in-out,
+                    padding .3s ease-in-out,
+                    margin .3s ease-in-out;
+        
+        height: 0;
+        overflow: hidden;
 
         li {
             position: relative;
@@ -64,17 +71,21 @@ body {
             cursor: pointer;
         }
 
+        &.expanded + ul {
+            height: auto; 
+        }
+
+        &.radio > &-icon {
+            background-image: url("../images/radio-no-exp.svg");
+        }
         &.radio.expanded > &-icon {
             background-image: url("../images/radio-exp.svg");
         }
-        &.radio.no-expanded > &-icon {
-            background-image: url("../images/radio-no-exp.svg");
+        &.checkbox > &-icon {
+            background-image: url("../images/checkbox-no-exp.svg")
         }
         &.checkbox.expanded > &-icon {
             background-image: url("../images/checkbox-exp.svg")
-        }
-        &.checkbox.no-expanded > &-icon {
-            background-image: url("../images/checkbox-no-exp.svg")
         }
     }
 
