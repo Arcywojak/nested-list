@@ -4,6 +4,7 @@ type ExpandingListElement {
     id: string,
     title: string,
     type: number,
+    nestingLevel: number
     nestedElements: ExpandingListElement[] <- (Nie jestem pewien czy w TS typ może zawierać właściwość o swoim typie)
 },
 

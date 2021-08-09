@@ -3,6 +3,7 @@ type ExpandingListElement {
     id: string, <- (unikalne)
     title: string,
     type: number,
+    nestingLevel: number
     nestedElements: ExpandingListElement[] <- (Nie jestem pewien czy w TS typ może zawierać właściwość o swoim typie)
 },
 
@@ -19,6 +20,11 @@ export class NestedExpandingListGenerator {
     };
 
 
+    maxHeights = {};
+    heightOfTextBlock = 0;
+    marginsOfList = 0;
+
+
     constructor(listHolder, dataJsonUrl) {
         this.listHolder = listHolder;
         this.dataJsonUrl = dataJsonUrl;
@@ -28,7 +34,6 @@ export class NestedExpandingListGenerator {
         try {
             const fetchedData = await fetch(this.dataJsonUrl);
             const data = await fetchedData.json();
-            console.log("I WORK")
 
             const expandingList = document.createElement("div");
             expandingList.classList.add("expanding-list");
@@ -45,6 +50,10 @@ export class NestedExpandingListGenerator {
     }
 
     generateListElements(parentBlock, expandingListElement) {
+
+        const isArray = Array.isArray(expandingListElement.nestedElements);
+        if(!isArray) throw new Error("nestedElementProperty is not an array! Repair your JSON file.");
+
         switch(expandingListElement.type) {
             case this.listElementType.PLAIN_TEXT:
                 this.generatePlainText(parentBlock, expandingListElement);
@@ -74,11 +83,15 @@ export class NestedExpandingListGenerator {
     
     getExpander(expandingListElement, expanderTypeName) {
         const expander = document.createElement("div");
-        expander.classList.add("expanding-list__expander", expanderTypeName);
+        expander.classList.add(
+            "expanding-list__expander", 
+            expanderTypeName, 
+            `nesting-level_${expandingListElement.nestingLevel}`
+            );
 
         const expanderChildIcon = document.createElement("div");
         expanderChildIcon.classList.add("expanding-list__expander-icon");
-        expanderChildIcon.addEventListener("click", (e) => {this.expandFn(e, expandingListElement.type)});
+        expanderChildIcon.addEventListener("click", (e) => {this.expandFn(e, expandingListElement)});
 
         const expanderChildText = document.createElement("div");
         expanderChildText.classList.add("expanding-list__expander-title", "text-block");
@@ -103,14 +116,96 @@ export class NestedExpandingListGenerator {
         return listOfExpander;
     }
 
-    expandFn(event, expandType) {
-        if(expandType === this.listElementType.RADIO_EXPANDER) {
-            const childrenOfList = event.target.parentNode.parentNode.parentNode.childNodes;
-            childrenOfList.map(child => {})
+    expandFn(event, expandingListElement) {
+        const expanderBlock = event.target.parentNode;
+        const ulList = expanderBlock.nextElementSibling;
+        const isRadioType = expandingListElement.type === this.listElementType.RADIO_EXPANDER;
+        const doWeTurnOnExpander = !expanderBlock.classList.contains("expanded");
+
+        if(isRadioType && doWeTurnOnExpander) {
+            //we want to turn off remained open radio groups on the same level
+            this.closeRadioExpanders(expandingListElement.nestingLevel);
         }
 
-        event.target.parentNode.classList.toggle("expanded");
+        //we set maxHeight manually because it is the only way (that I have found)
+        //to provide quite smooth animation of unfolding 
+        ulList.style.maxHeight = doWeTurnOnExpander ? this.getMaxHeightString(expandingListElement) : "0";
+        expanderBlock.classList.toggle("expanded");
+    }
 
+    getMaxHeightString(expandingListElement) {
+        const {id} = expandingListElement;
+        if(!(id in this.maxHeights)) {
+            //we subtract one time height because we want height of list without the expander
+            this.maxHeights[id] = this.calculateMaxHeight(expandingListElement) - this.getHeightOfTextBlock();
+        }
+
+        return `${this.maxHeights[id]}px`;
+    }
+
+    calculateMaxHeight(expandingListElement, sum = 0) {
+        sum += this.getHeightOfTextBlock();
+
+        //we do no need to validate array because we did it earlier in this.getListOfExpander(...)
+        if(expandingListElement.nestedElements.length > 0) {
+
+            sum += this.getMarginsOfList();
+
+            expandingListElement.nestedElements.map(el => {
+                sum += this.calculateMaxHeight(el, 0);
+            });
+        }   
+
+        return sum;
+    }
+
+    getHeightOfTextBlock() {
+        if(!this.heightOfTextBlock) {
+            const elementWithText = this.listHolder.querySelector(".text-block");
+            const fontSizeOfText = window.getComputedStyle(elementWithText).getPropertyValue("font-size");
+            const paddingBottom = window.getComputedStyle(elementWithText).getPropertyValue("padding-bottom");
+            const paddingTop = window.getComputedStyle(elementWithText).getPropertyValue("padding-top");
+
+            //we multiply by 1.2 because lineHeight is typically fontSize multiplied by 1.2
+            const height = this.getNumberFromSizeInPx(fontSizeOfText)*1.2 + 
+                               this.getNumberFromSizeInPx(paddingTop) + 
+                               this.getNumberFromSizeInPx(paddingBottom);
+            this.heightOfTextBlock = height;
+        }
+        
+        
+        return this.heightOfTextBlock;
+    }
+
+    getNumberFromSizeInPx(sizeInPx) {
+        return Number(sizeInPx.slice(0, sizeInPx.length - 2));
+    }
+
+    closeRadioExpanders(nestingLevel) {
+        const siblingsOfRadioExpander = this.listHolder.querySelectorAll(
+            `.radio.nesting-level_${nestingLevel}`
+            );
+
+        siblingsOfRadioExpander.forEach(el => {
+            const ulList = el.nextElementSibling;
+            ulList.style.maxHeight = "0";
+            el.classList.remove("expanded")
+        });
+    }
+
+    getMarginsOfList() {
+        if(!this.marginsOfList) {
+            const list = this.listHolder.querySelector("ul");   
+            if(!list) {
+                return 0;
+            }
+            const marginTop = window.getComputedStyle(list).getPropertyValue("margin-top");
+            const marginBottom = window.getComputedStyle(list).getPropertyValue("margin-bottom");
+    
+            this.marginsOfList = this.getNumberFromSizeInPx(marginTop) + this.getNumberFromSizeInPx(marginBottom);
+        }
+
+        return this.marginsOfList;
     }
 
 }

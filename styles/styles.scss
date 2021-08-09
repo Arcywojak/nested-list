@@ -13,23 +13,28 @@ body {
 
 .container {
     width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     height: 100vh;
+    padding: 10vw 12px;
     display: grid;
-    place-items: center;
 }
 
 .expanding-list { 
+    &-holder {
+        width: 100%;
+    }
+
     ul {
         position: relative;
         list-style-type: none;
         padding-left: $ulLeftPadding;
         margin: $ulMarginBottom 0 0 0;
+        width: 100%;
 
-        transition: fontSize .3s ease-in-out,
-                    padding .3s ease-in-out,
-                    margin .3s ease-in-out;
+        transition: max-height .8s ease-in-out;
         
-        height: 0;
+        max-height: 0;
         overflow: hidden;
 
         li {
@@ -69,10 +74,6 @@ body {
             width: $iconSize;
             height: $iconSize;
             cursor: pointer;
-        }
-
-        &.expanded + ul {
-            height: auto; 
         }
 
         &.radio > &-icon {

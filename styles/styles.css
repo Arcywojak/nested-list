@@ -11,10 +11,16 @@ body {
 
 .container {
   width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   height: 100vh;
+  padding: 10vw 12px;
   display: -ms-grid;
   display: grid;
-  place-items: center;
+}
+
+.expanding-list-holder {
+  width: 100%;
 }
 
 .expanding-list ul {
@@ -22,9 +28,10 @@ body {
   list-style-type: none;
   padding-left: 25px;
   margin: 5px 0 0 0;
-  -webkit-transition: fontSize .3s ease-in-out, padding .3s ease-in-out, margin .3s ease-in-out;
-  transition: fontSize .3s ease-in-out, padding .3s ease-in-out, margin .3s ease-in-out;
-  height: 0;
+  width: 100%;
+  -webkit-transition: max-height .8s ease-in-out;
+  transition: max-height .8s ease-in-out;
+  max-height: 0;
   overflow: hidden;
 }
 
@@ -67,10 +74,6 @@ body {
   width: 20px;
   height: 20px;
   cursor: pointer;
-}
-
-.expanding-list__expander.expanded + ul {
-  height: auto;
 }
 
 .expanding-list__expander.radio > .expanding-list__expander-icon {
