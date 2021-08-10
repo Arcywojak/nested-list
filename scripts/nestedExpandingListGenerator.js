@@ -237,7 +237,7 @@ export class NestedExpandingListGenerator {
                                  this.getNumberFromSizeInPx(paddingTop);
         }
 
-        return this.marginsAndPaddingsgOfList;
+        return this.marginsAndPaddingsOfList;
     }
 
 }
