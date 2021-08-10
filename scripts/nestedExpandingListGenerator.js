@@ -1,4 +1,6 @@
 /*
+@model
+
 type ExpandingListElement {
     id: string, <- (unikalne)
     titleArray: string[],
@@ -19,10 +21,11 @@ export class NestedExpandingListGenerator {
         "CHECKBOX_EXPANDER": 2
     };
 
-
+    //Object, which will contain max-height for every expanding-list
     maxHeights = {};
+
     heightOfTextBlock = 0;
-    marginsOfList = 0;
+    marginsAndPaddingsOfList = 0;
 
 
     constructor(listHolder, dataJsonUrl) {
@@ -120,6 +123,8 @@ export class NestedExpandingListGenerator {
         expandingListElement.nestedElements.map(el => {
             const listElement = document.createElement("li");
             listOfExpander.appendChild(listElement);
+
+            //recursion to generate nested lists
             this.generateListElements(listElement, el);
         })
 
@@ -159,7 +164,7 @@ export class NestedExpandingListGenerator {
         //we do no need to validate array because we did it earlier in this.getListOfExpander(...)
         if(expandingListElement.nestedElements.length > 0) {
 
-            sum += this.getMarginsOfList();
+            sum += this.getMarginsAndPaddingsOfList();
 
             expandingListElement.nestedElements.map(el => {
                 sum += this.calculateMaxHeight(el, 0);
@@ -175,11 +180,15 @@ export class NestedExpandingListGenerator {
             const fontSizeOfText = window.getComputedStyle(elementWithText).getPropertyValue("font-size");
             const paddingBottom = window.getComputedStyle(elementWithText).getPropertyValue("padding-bottom");
             const paddingTop = window.getComputedStyle(elementWithText).getPropertyValue("padding-top");
+            const marginBottom = window.getComputedStyle(elementWithText).getPropertyValue("margin-bottom");
+            const marginTop = window.getComputedStyle(elementWithText).getPropertyValue("margin-bottom");
 
             //we multiply by 1.2 because lineHeight is typically fontSize multiplied by 1.2
-            const height = this.getNumberFromSizeInPx(fontSizeOfText)*1.2 + 
-                               this.getNumberFromSizeInPx(paddingTop) + 
-                               this.getNumberFromSizeInPx(paddingBottom);
+            const height  = this.getNumberFromSizeInPx(fontSizeOfText)*1.2 + 
+                            this.getNumberFromSizeInPx(paddingTop) + 
+                            this.getNumberFromSizeInPx(paddingBottom) +
+                            this.getNumberFromSizeInPx(marginTop)
+                            this.getNumberFromSizeInPx(marginBottom);
             this.heightOfTextBlock = height;
         }
         
@@ -188,6 +197,10 @@ export class NestedExpandingListGenerator {
     }
 
     getNumberFromSizeInPx(sizeInPx) {
+        if(!sizeInPx) {
+            return 0;
+        }
+
         return Number(sizeInPx.slice(0, sizeInPx.length - 2));
     }
 
@@ -203,16 +216,21 @@ export class NestedExpandingListGenerator {
         });
     }
 
-    getMarginsOfList() {
-        if(!this.marginsOfList) {
+    getMarginsAndPaddingsOfList() {
+        if(this.marginsAndPaddingsOfList == null) {
             const list = this.listHolder.querySelector("ul");   
             if(!list) {
                 return 0;
             }
             const marginTop = window.getComputedStyle(list).getPropertyValue("margin-top");
             const marginBottom = window.getComputedStyle(list).getPropertyValue("margin-bottom");
+            const paddingBottom = window.getComputedStyle(list).getPropertyValue("padding-bottom");
+            const paddingTop = window.getComputedStyle(list).getPropertyValue("padding-top");
     
-            this.marginsOfList = this.getNumberFromSizeInPx(marginTop) + this.getNumberFromSizeInPx(marginBottom);
+            this.marginsAndPaddingsOfList = this.getNumberFromSizeInPx(marginTop) + 
+                                 this.getNumberFromSizeInPx(marginBottom) +
+                                 this.getNumberFromSizeInPx(paddingBottom) + 
+                                 this.getNumberFromSizeInPx(paddingTop);
         }
 
         return this.marginsOfList;

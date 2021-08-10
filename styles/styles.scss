@@ -15,7 +15,7 @@ body {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    height: 100vh;
+    min-height: 100vh;
     padding: 10vw 12px;
     display: grid;
 }
@@ -98,6 +98,7 @@ body {
 
 .expanding-list {
     ul {
+        //ul vertival line
         &::before {
             content: "";
             width: $lineWidth;
@@ -108,6 +109,7 @@ body {
             top: $verticalLineTop;
         }
     
+        //li horizontal line
         li::before {
             content: "";
             width: $horizontalLineLength;
@@ -118,6 +120,7 @@ body {
             top: $horizontalLineTop;
         }
     
+        //this line is to cover ul line which is a bit too long
         li:last-child::after {
             content: "";
             width: $lineWidth;
@@ -130,6 +133,7 @@ body {
     }
 
     &__expander {
+        //this line extends ul line because ul line doesn't know how many 'titles' is.
         .expanded &-title::before {
             content: "";
             width: $lineWidth;

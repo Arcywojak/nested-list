@@ -13,7 +13,7 @@ body {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  height: 100vh;
+  min-height: 100vh;
   padding: 10vw 12px;
   display: -ms-grid;
   display: grid;
