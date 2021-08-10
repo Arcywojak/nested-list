@@ -133,7 +133,7 @@ body {
     }
 
     &__expander {
-        //this line extends ul line because ul line doesn't know how many 'titles' is.
+        //this line extends ul line because ul line doesn't know how many rows of text are.
         .expanded &-title::before {
             content: "";
             width: $lineWidth;
