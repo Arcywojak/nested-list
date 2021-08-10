@@ -9,7 +9,7 @@ type ExpandingListElement {
     nestedElements: ExpandingListElement[] <- (Nie jestem pewien czy w TS typ może zawierać właściwość o swoim typie)
 },
 
-listElementsArray: ExpandingListElement
+data: ExpandingListElement
 
 */
 
