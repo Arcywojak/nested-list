@@ -24,8 +24,11 @@ export class NestedExpandingListGenerator {
     //Object, which will contain max-height for every expanding-list
     maxHeights = {};
 
+    //this height will always be positive number
     heightOfTextBlock = 0;
-    marginsAndPaddingsOfList = 0;
+
+    //this height might be 0, so we set it to null to avoid doing multiple calculations instead of one
+    marginsAndPaddingsOfList = null;
 
 
     constructor(listHolder, dataJsonUrl) {
@@ -37,6 +40,7 @@ export class NestedExpandingListGenerator {
         try {
             const fetchedData = await fetch(this.dataJsonUrl);
             const data = await fetchedData.json();
+            
 
             const expandingList = document.createElement("div");
             expandingList.classList.add("expanding-list");
@@ -233,7 +237,7 @@ export class NestedExpandingListGenerator {
                                  this.getNumberFromSizeInPx(paddingTop);
         }
 
-        return this.marginsOfList;
+        return this.marginsAndPaddingsgOfList;
     }
 
 }
