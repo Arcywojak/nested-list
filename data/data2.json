@@ -27,7 +27,7 @@
                 {
                     "id": "100",
                     "titleArray": ["Zespół 3", "Analitycy"],
-                    "type": 2,
+                    "type": 1,
                     "nestingLevel": 2, 
                     "nestedElements": [
                         {
@@ -70,8 +70,8 @@
                 {
                     "id": "201",
                     "titleArray": ["Zespół 4", "Programiści"],
-                    "type": 2,
-                    "nestingLevel": 1,
+                    "type": 1,
+                    "nestingLevel": 2,
                     "nestedElements": [
                         {
                             "id": "202",
