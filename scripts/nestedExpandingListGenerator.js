@@ -65,19 +65,19 @@ export class NestedExpandingListGenerator {
 
         switch(expandingListElement.type) {
             case this.listElementType.PLAIN_TEXT:
-                this.generatePlainText(parentBlock, expandingListElement);
+                this.appendPlainText(parentBlock, expandingListElement);
                 return;
             case this.listElementType.RADIO_EXPANDER:
-                this.generateExpanderWithList(parentBlock, expandingListElement, "radio");
+                this.appendExpanderWithList(parentBlock, expandingListElement, "radio");
                 return;
             case this.listElementType.CHECKBOX_EXPANDER:
-                this.generateExpanderWithList(parentBlock, expandingListElement, "checkbox");
+                this.appendExpanderWithList(parentBlock, expandingListElement, "checkbox");
                 return;
             default: return;
         }
     }
 
-    generatePlainText(parentBlock, expandingListElement) {
+    appendPlainText(parentBlock, expandingListElement) {
         parentBlock.classList.add("expanding-list__no-more-expand", "text-block");
         this.attachTitles(parentBlock, expandingListElement);
     }
@@ -90,7 +90,7 @@ export class NestedExpandingListGenerator {
         });
     }
 
-    generateExpanderWithList(parentBlock, expandingListElement, expanderTypeName) {
+    appendExpanderWithList(parentBlock, expandingListElement, expanderTypeName) {
         const expander = this.getExpander(expandingListElement, expanderTypeName);
         const listOfExpander = this.getListOfExpander(expandingListElement);    
 
